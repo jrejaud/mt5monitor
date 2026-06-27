@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EA Sentinel — Know the second your MT5 EA stops trading</title>
+<meta name="description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram. Stop finding out hours later that your EA went down.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- analytics: Umami (website-id injected at deploy) -->
+<script defer src="https://umami.alastor.space/script.js" data-website-id="b976bad1-7c72-4076-8d56-e6151b22a690"></script>
+<script>
+  tailwind.config = { theme: { extend: { colors: { brand: { 400:'#34d399', 500:'#10b981', 600:'#059669' } } } } }
+  function track(name, data){ try{ if(window.umami) umami.track(name, data||{}); }catch(e){} }
+</script>
+<style>
+  body{background:#0b0f14;color:#e6edf3}
+  .glow{box-shadow:0 0 0 1px rgba(16,185,129,.15), 0 20px 60px -20px rgba(16,185,129,.25)}
+  .grid-bg{background-image:radial-gradient(rgba(16,185,129,.08) 1px,transparent 1px);background-size:22px 22px}
+</style>
+
+<!-- auto-extras:start -->
+<meta name="description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.">
+<link rel="canonical" href="https://mt5monitor.alastor.space/">
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EA Sentinel">
+<meta property="og:title" content="EA Sentinel">
+<meta property="og:description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.">
+<meta property="og:url" content="https://mt5monitor.alastor.space/">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://mt5monitor.alastor.space/og-image.png">
+<meta property="og:image:alt" content="EA Sentinel">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EA Sentinel">
+<meta name="twitter:description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.">
+<meta name="twitter:image" content="https://mt5monitor.alastor.space/og-image.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="shortcut icon" href="/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0b0b0f">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "EA Sentinel",
+  "url": "https://mt5monitor.alastor.space/",
+  "description": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.",
+  "email": "hello@alastor.space"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "EA Sentinel",
+  "url": "https://mt5monitor.alastor.space/",
+  "description": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "MT5 Expert Advisor monitoring & alerts",
+  "description": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.",
+  "provider": {
+    "@type": "Organization",
+    "name": "EA Sentinel",
+    "url": "https://mt5monitor.alastor.space/"
+  },
+  "areaServed": "Worldwide"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is EA Sentinel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I get started with EA Sentinel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Visit https://mt5monitor.alastor.space/ and follow the call to action to sign up or request access."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is EA Sentinel free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pricing details are available on the EA Sentinel website. Get in touch to learn more."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://mt5monitor.alastor.space/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Privacy",
+      "item": "https://mt5monitor.alastor.space/privacy"
+    }
+  ]
+}
+</script>
+<!-- auto-extras:end -->
+</head>
+<body x-data="{ open:false, plan:'', sent:false }" class="antialiased">
+
+<!-- nav -->
+<header class="sticky top-0 z-40 backdrop-blur bg-[#0b0f14]/80 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2 font-semibold tracking-tight">
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-brand-500 animate-pulse"></span>
+      EA&nbsp;Sentinel
+    </a>
+    <nav class="hidden sm:flex items-center gap-7 text-sm text-slate-300">
+      <a href="#how" class="hover:text-white">How it works</a>
+      <a href="#features" class="hover:text-white">Features</a>
+      <a href="#pricing" class="hover:text-white">Pricing</a>
+    </nav>
+    <a href="#pricing" @click="track('nav_cta')" class="text-sm font-medium bg-brand-500 hover:bg-brand-400 text-[#04130c] px-4 py-2 rounded-lg">Start monitoring</a>
+  </div>
+</header>
+
+<!-- hero -->
+<section class="grid-bg border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-5 pt-20 pb-24 text-center">
+    <div class="inline-flex items-center gap-2 text-xs text-brand-400 border border-brand-500/30 rounded-full px-3 py-1 mb-6">
+      <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> For traders running EAs 24/7 on a VPS
+    </div>
+    <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.05]">
+      Know the <span class="text-brand-400">second</span> your<br class="hidden sm:block"> MT5 EA stops trading.
+    </h1>
+    <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-300">
+      Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors —
+      straight to Telegram. Stop finding out <em>hours later</em> that your bot went down, blew a
+      drawdown limit, or lost the broker connection.
+    </p>
+    <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#pricing" @click="track('hero_cta')" class="bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold px-6 py-3 rounded-xl glow">Start monitoring →</a>
+      <a href="#how" class="border border-white/15 hover:border-white/30 px-6 py-3 rounded-xl">See how it works</a>
+    </div>
+    <p class="mt-4 text-xs text-slate-500">No card to start · Telegram alerts in under 5 minutes</p>
+  </div>
+</section>
+
+<!-- problem -->
+<section class="max-w-4xl mx-auto px-5 py-20 text-center">
+  <h2 class="text-2xl sm:text-3xl font-bold">Your EA went down at 2&nbsp;a.m. You found out at noon.</h2>
+  <p class="mt-4 text-slate-300">A detached EA, a frozen terminal, a broker disconnect, a VPS reboot — any of them silently stops your strategy. By the time you notice, you've missed entries, held losers, or breached a funded-account rule.</p>
+  <div class="mt-10 grid sm:grid-cols-3 gap-4 text-left">
+    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">EA detached / stopped</div><p class="text-sm text-slate-400 mt-1">AutoTrading off, EA removed from chart, or terminal closed — and no one told you.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">Broker disconnect</div><p class="text-sm text-slate-400 mt-1">Connection drops at the worst moment; orders don't fire, trailing stops freeze.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">Drawdown breach</div><p class="text-sm text-slate-400 mt-1">Equity falls past your limit — or your prop-firm daily limit — with no warning.</p></div>
+  </div>
+</section>
+
+<!-- how -->
+<section id="how" class="border-y border-white/5 bg-white/[.02]">
+  <div class="max-w-5xl mx-auto px-5 py-20">
+    <h2 class="text-center text-2xl sm:text-3xl font-bold">Live in 5 minutes</h2>
+    <div class="mt-12 grid sm:grid-cols-3 gap-8">
+      <div><div class="text-brand-400 text-sm font-mono">01</div><h3 class="font-semibold mt-1">Attach the monitor</h3><p class="text-sm text-slate-400 mt-1">Drop the lightweight EA Sentinel utility on any chart (or connect read-only). It sends a secure heartbeat with your account health.</p></div>
+      <div><div class="text-brand-400 text-sm font-mono">02</div><h3 class="font-semibold mt-1">Set your rules</h3><p class="text-sm text-slate-400 mt-1">Pick the thresholds that matter — max drawdown, margin level, “no trades in X hours”, disconnect, equity floor.</p></div>
+      <div><div class="text-brand-400 text-sm font-mono">03</div><h3 class="font-semibold mt-1">Get pinged instantly</h3><p class="text-sm text-slate-400 mt-1">The moment something breaks, you get a Telegram / email / SMS alert — with exactly what failed and on which account.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- features -->
+<section id="features" class="max-w-6xl mx-auto px-5 py-20">
+  <h2 class="text-center text-2xl sm:text-3xl font-bold">Everything you need to sleep through the session</h2>
+  <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">⚡ Instant downtime alerts</h3><p class="text-sm text-slate-400 mt-1">EA stopped, AutoTrading off, terminal closed, or VPS offline — detected within seconds.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📉 Drawdown & margin guards</h3><p class="text-sm text-slate-400 mt-1">Alert before you breach a personal or prop-firm drawdown / daily-loss limit.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔌 Broker disconnect watch</h3><p class="text-sm text-slate-400 mt-1">Know the instant the terminal loses its connection to your broker.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🧊 “Frozen EA” detection</h3><p class="text-sm text-slate-400 mt-1">No ticks processed or no trades when there should be? Catch a silently-stuck strategy.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🖥️ Multi-account fleet view</h3><p class="text-sm text-slate-400 mt-1">Every account, VPS and EA on one live dashboard — equity, DD, open trades, status.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📲 Telegram · Email · SMS</h3><p class="text-sm text-slate-400 mt-1">Route alerts where you'll actually see them, with per-rule channels.</p></div>
+  </div>
+</section>
+
+<!-- pricing -->
+<section id="pricing" class="border-t border-white/5 bg-white/[.02]">
+  <div class="max-w-6xl mx-auto px-5 py-20">
+    <h2 class="text-center text-2xl sm:text-3xl font-bold">Simple pricing</h2>
+    <p class="text-center text-slate-400 mt-2">Cancel anytime. Less than one missed trade.</p>
+    <div class="mt-12 grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
+      <!-- Solo -->
+      <div class="rounded-2xl border border-white/10 p-6 flex flex-col">
+        <div class="font-semibold">Solo</div>
+        <div class="mt-2 text-3xl font-bold">$9<span class="text-base font-normal text-slate-400">/mo</span></div>
+        <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
+          <li>✓ 1 account</li><li>✓ Telegram + email alerts</li><li>✓ Uptime & disconnect alerts</li><li>✓ 7-day history</li>
+        </ul>
+        <button @click="plan='Solo'; open=true; track('subscribe_click',{plan:'Solo',price:9})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
+      </div>
+      <!-- Trader (popular) -->
+      <div class="rounded-2xl border border-brand-500/50 p-6 flex flex-col glow relative">
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 text-[11px] bg-brand-500 text-[#04130c] font-semibold px-3 py-0.5 rounded-full">MOST POPULAR</div>
+        <div class="font-semibold">Trader</div>
+        <div class="mt-2 text-3xl font-bold">$19<span class="text-base font-normal text-slate-400">/mo</span></div>
+        <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
+          <li>✓ Up to 5 accounts</li><li>✓ Telegram + email + SMS</li><li>✓ Drawdown & margin rules</li><li>✓ Frozen-EA detection</li><li>✓ 90-day history</li>
+        </ul>
+        <button @click="plan='Trader'; open=true; track('subscribe_click',{plan:'Trader',price:19})" class="mt-6 bg-brand-500 hover:bg-brand-400 text-[#04130c] py-2.5 rounded-lg font-semibold">Subscribe</button>
+      </div>
+      <!-- Desk -->
+      <div class="rounded-2xl border border-white/10 p-6 flex flex-col">
+        <div class="font-semibold">Desk</div>
+        <div class="mt-2 text-3xl font-bold">$49<span class="text-base font-normal text-slate-400">/mo</span></div>
+        <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
+          <li>✓ Unlimited accounts</li><li>✓ Multi-VPS fleet dashboard</li><li>✓ All alert channels</li><li>✓ Priority support</li><li>✓ 1-year history</li>
+        </ul>
+        <button @click="plan='Desk'; open=true; track('subscribe_click',{plan:'Desk',price:49})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- faq -->
+<section class="max-w-3xl mx-auto px-5 py-20">
+  <h2 class="text-center text-2xl font-bold">Questions</h2>
+  <div class="mt-8 space-y-4 text-sm">
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Does it place or close trades?</summary><p class="text-slate-400 mt-2">No. EA Sentinel is monitoring-only — it watches your accounts and alerts you. It never trades.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Which brokers / platforms?</summary><p class="text-slate-400 mt-2">Any broker on MetaTrader 5. MT4 support is on the roadmap.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Will it work on my VPS?</summary><p class="text-slate-400 mt-2">Yes — the monitor runs alongside your terminal on any Windows VPS, and a cloud option needs no install.</p></details>
+  </div>
+</section>
+
+<!-- modal -->
+<div x-show="open" x-cloak style="display:none" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/70" @click.self="open=false">
+  <div class="w-full max-w-md rounded-2xl border border-white/10 bg-[#0e141b] p-6 glow">
+    <template x-if="!sent">
+      <div>
+        <h3 class="text-lg font-semibold">Get early access — <span x-text="plan" class="text-brand-400"></span> plan</h3>
+        <p class="text-sm text-slate-400 mt-1">We're onboarding our first traders now. Drop your email and we'll send your invite + a launch discount.</p>
+        <form class="mt-5 space-y-3" @submit.prevent="
+            track('early_access_submit',{plan:plan, email:$refs.email.value, setup:$refs.setup.value});
+            sent=true;">
+          <input x-ref="email" type="email" required placeholder="you@email.com" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none">
+          <input x-ref="setup" type="text" placeholder="Broker / EA you run (optional)" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none">
+          <button class="w-full bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold py-2.5 rounded-lg">Get my invite</button>
+        </form>
+        <button @click="open=false" class="mt-3 w-full text-xs text-slate-500 hover:text-slate-300">Maybe later</button>
+      </div>
+    </template>
+    <template x-if="sent">
+      <div class="text-center py-4">
+        <div class="text-3xl">✅</div>
+        <h3 class="text-lg font-semibold mt-2">You're on the list.</h3>
+        <p class="text-sm text-slate-400 mt-1">We'll email your invite shortly. Watch your inbox.</p>
+        <button @click="open=false; sent=false" class="mt-5 text-sm border border-white/15 px-4 py-2 rounded-lg">Close</button>
+      </div>
+    </template>
+  </div>
+</div>
+
+<!-- footer -->
+<footer class="border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-5 py-10 text-sm text-slate-500 flex flex-col sm:flex-row gap-4 justify-between">
+    <div>© 2026 EA Sentinel. Monitoring tool — not affiliated with MetaQuotes or MetaTrader.</div>
+    <div class="flex gap-5"><a href="/privacy" class="hover:text-slate-300">Privacy</a><a href="/terms" class="hover:text-slate-300">Terms</a></div>
+  </div>
+</footer>
+<style>[x-cloak]{display:none!important}</style>
+</body>
+</html>
