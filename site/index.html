@@ -290,7 +290,19 @@
 </footer>
 <style>[x-cloak]{display:none!important}</style>
 <script>
-  window.uev=function(n,d){try{navigator.sendBeacon('https://umami.alastor.space/api/send',new Blob([JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:n,data:d||{}}})],{type:'text/plain'}));}catch(e){}};
+  // Ad attribution: capture gclid / utm_* (and ValueTrack-filled params) once per session,
+  // persist across the modal flow, and merge into every conversion event so Umami event-data
+  // tells us which source / campaign / keyword drove each subscribe_click & early_access_submit.
+  window.__attr=(function(){
+    var keys=['gclid','wbraid','gbraid','utm_source','utm_medium','utm_campaign','utm_term','utm_content','keyword','campaignid','adgroupid','source'];
+    var a={};try{a=JSON.parse(sessionStorage.getItem('__attr')||'{}');}catch(e){}
+    try{var p=new URLSearchParams(location.search),got=false;
+      keys.forEach(function(k){var v=p.get(k);if(v){a[k]=v;got=true;}});
+      if(got)sessionStorage.setItem('__attr',JSON.stringify(a));
+    }catch(e){}
+    return a;
+  })();
+  window.uev=function(n,d){try{var data=Object.assign({},window.__attr||{},d||{});navigator.sendBeacon('https://umami.alastor.space/api/send',new Blob([JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:n,data:data}})],{type:'text/plain'}));}catch(e){}};
 </script>
 </body>
 </html>
