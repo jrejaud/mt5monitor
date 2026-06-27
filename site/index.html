@@ -159,9 +159,10 @@
       Keep your MT5 EA<br class="hidden sm:block"> running <span class="text-brand-400">24/7</span>.
     </h1>
     <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-300">
-      A watchdog for your MetaTrader Expert Advisors. When your VPS reboots, the terminal freezes,
-      an EA detaches, or the broker drops — EA Sentinel <em>auto-restarts it for you</em> and pings
-      you it's handled. Stop babysitting your VPS. Stop missing trades while your bot sits dead.
+      A watchdog for your MetaTrader Expert Advisor. Your VPS being <em>up</em> isn't the same as your
+      bot <em>trading</em> — a reboot can relaunch the terminal but leave your EA stripped off the chart.
+      EA Sentinel gets the EA itself running again and pings your phone the second something's wrong.
+      We never touch your strategy or see your money — we just make sure it's still trading.
     </p>
     <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
       <a href="#pricing" data-umami-event="hero_cta" class="bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold px-6 py-3 rounded-xl glow">Keep my EA alive →</a>
@@ -185,42 +186,44 @@
   </div>
 </section>
 
-<!-- product mockup: fleet dashboard -->
-<section class="max-w-6xl mx-auto px-5 pb-8">
-  <h2 class="text-center text-2xl sm:text-3xl font-bold">Your whole fleet on one screen</h2>
-  <p class="text-center text-slate-400 mt-2 max-w-2xl mx-auto">Every VPS, terminal and EA — green when healthy, and auto-recovered the moment it isn't. No more RDP-ing into six servers to check if your bots are alive.</p>
+<!-- product mockup: single-account health -->
+<section class="max-w-5xl mx-auto px-5 pb-8">
+  <h2 class="text-center text-2xl sm:text-3xl font-bold">Know your bot is alive — without logging in</h2>
+  <p class="text-center text-slate-400 mt-2 max-w-2xl mx-auto">A live heartbeat from your EA, a clear "still trading" status, and every recovery logged. Stop RDP-ing into your VPS just to check it's breathing.</p>
   <div class="mt-10 rounded-2xl border border-white/10 bg-[#0e141b] glow overflow-hidden">
     <!-- window chrome -->
     <div class="flex items-center gap-2 px-4 py-3 border-b border-white/5 bg-white/[.02]">
       <span class="w-3 h-3 rounded-full bg-red-400/70"></span>
       <span class="w-3 h-3 rounded-full bg-yellow-400/70"></span>
       <span class="w-3 h-3 rounded-full bg-green-400/70"></span>
-      <span class="ml-3 text-xs text-slate-400">EA Sentinel — Fleet</span>
+      <span class="ml-3 text-xs text-slate-400">EA Sentinel</span>
     </div>
     <div class="grid lg:grid-cols-3 gap-px bg-white/5">
-      <!-- tiles -->
+      <!-- primary account card -->
       <div class="lg:col-span-2 bg-[#0e141b] p-5">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-          <div class="rounded-lg border border-white/10 p-3"><div class="flex items-center justify-between"><span class="font-medium text-slate-200">VPS-01</span><span class="w-2 h-2 rounded-full bg-brand-500"></span></div><div class="text-slate-500 mt-1">Pepperstone · MT5</div><div class="text-brand-400 mt-2">Powerhouse · running</div></div>
-          <div class="rounded-lg border border-white/10 p-3"><div class="flex items-center justify-between"><span class="font-medium text-slate-200">VPS-02</span><span class="w-2 h-2 rounded-full bg-brand-500"></span></div><div class="text-slate-500 mt-1">IC Markets · MT4</div><div class="text-brand-400 mt-2">Serenity · running</div></div>
-          <div class="rounded-lg border border-yellow-400/30 bg-yellow-400/[.04] p-3"><div class="flex items-center justify-between"><span class="font-medium text-slate-200">VPS-03</span><span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse"></span></div><div class="text-slate-500 mt-1">FOREX.com · MT5</div><div class="text-yellow-300 mt-2">recovered 2m ago</div></div>
-          <div class="rounded-lg border border-white/10 p-3"><div class="flex items-center justify-between"><span class="font-medium text-slate-200">VPS-04</span><span class="w-2 h-2 rounded-full bg-brand-500"></span></div><div class="text-slate-500 mt-1">Exness · MT5</div><div class="text-brand-400 mt-2">Crackerjack · running</div></div>
-          <div class="rounded-lg border border-white/10 p-3"><div class="flex items-center justify-between"><span class="font-medium text-slate-200">VPS-05</span><span class="w-2 h-2 rounded-full bg-brand-500"></span></div><div class="text-slate-500 mt-1">Oanda · MT4</div><div class="text-brand-400 mt-2">Slugger · running</div></div>
-          <div class="rounded-lg border border-white/10 p-3"><div class="flex items-center justify-between"><span class="font-medium text-slate-200">VPS-06</span><span class="w-2 h-2 rounded-full bg-brand-500"></span></div><div class="text-slate-500 mt-1">RoboForex · MT5</div><div class="text-brand-400 mt-2">Ranger · running</div></div>
+        <div class="rounded-xl border border-brand-500/30 bg-brand-500/[.04] p-5">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-base font-semibold text-slate-100">Powerhouse EA · EUR/USD</div>
+              <div class="text-xs text-slate-400 mt-0.5">Pepperstone · MT5 · account ••4827</div>
+            </div>
+            <span class="inline-flex items-center gap-2 text-xs text-brand-300 border border-brand-500/40 rounded-full px-3 py-1"><span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span> trading</span>
+          </div>
+          <div class="mt-5 grid grid-cols-3 gap-4 text-xs">
+            <div><div class="text-2xl font-bold text-brand-400">4s</div><div class="text-slate-500">since last heartbeat</div></div>
+            <div><div class="text-2xl font-bold">99.98%</div><div class="text-slate-500">uptime · 30d</div></div>
+            <div><div class="text-2xl font-bold">2</div><div class="text-slate-500">auto-recoveries · 30d</div></div>
+          </div>
         </div>
-        <div class="mt-4 flex flex-wrap gap-4 text-xs">
-          <div><span class="text-2xl font-bold text-brand-400">12/12</span><span class="text-slate-500 ml-2">terminals up</span></div>
-          <div><span class="text-2xl font-bold">99.98%</span><span class="text-slate-500 ml-2">uptime · 30d</span></div>
-          <div><span class="text-2xl font-bold">3</span><span class="text-slate-500 ml-2">auto-recoveries today</span></div>
-        </div>
+        <div class="mt-3 text-xs text-slate-500 flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-white/20"></span> + add another account on Trader & Desk plans</div>
       </div>
       <!-- activity log -->
       <div class="bg-[#0e141b] p-5">
         <div class="text-xs font-semibold text-slate-300 mb-3">Recovery activity</div>
         <ul class="space-y-3 text-xs">
-          <li class="flex gap-2"><span class="text-brand-400">✓</span><div><div class="text-slate-300">VPS-03 rebooted → MT5 relaunched → Crackerjack re-attached</div><div class="text-slate-500">00:41 · 18s to recover</div></div></li>
-          <li class="flex gap-2"><span class="text-brand-400">✓</span><div><div class="text-slate-300">VPS-01 CPU spike cleared, terminal restarted</div><div class="text-slate-500">03:12 · 24s to recover</div></div></li>
-          <li class="flex gap-2"><span class="text-brand-400">✓</span><div><div class="text-slate-300">VPS-05 broker reconnected, AutoTrading re-enabled</div><div class="text-slate-500">06:58 · 9s to recover</div></div></li>
+          <li class="flex gap-2"><span class="text-brand-400">✓</span><div><div class="text-slate-300">VPS rebooted (Windows update) → MT5 relaunched → EA re-attached to EUR/USD</div><div class="text-slate-500">Tue 00:41 · back trading in 18s</div></div></li>
+          <li class="flex gap-2"><span class="text-brand-400">✓</span><div><div class="text-slate-300">Terminal froze on a news spike → restarted clean</div><div class="text-slate-500">Mon 03:12 · back trading in 24s</div></div></li>
+          <li class="flex gap-2"><span class="text-slate-500">•</span><div><div class="text-slate-400">Heartbeat OK — EA trading normally</div><div class="text-slate-500">now</div></div></li>
         </ul>
       </div>
     </div>
@@ -261,12 +264,12 @@
 <section id="features" class="max-w-6xl mx-auto px-5 py-20">
   <h2 class="text-center text-2xl sm:text-3xl font-bold">A watchdog that actually fixes things</h2>
   <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔁 Auto-restart on reboot</h3><p class="text-sm text-slate-400 mt-1">When the VPS reboots from a Windows update, MetaTrader and every EA relaunch automatically — no manual login.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔁 Puts the EA back on its chart</h3><p class="text-sm text-slate-400 mt-1">A reboot that relaunches MetaTrader but strips your EA off the chart isn't recovery. We re-attach the EA itself, with its settings — then confirm it's trading.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">💓 Per-EA heartbeat</h3><p class="text-sm text-slate-400 mt-1">A dead-man's-switch on the EA, not just the connection. If it stops sending its pulse you know in seconds — even when the terminal still looks online.</p></div>
     <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🧊 Freeze & CPU-spike recovery</h3><p class="text-sm text-slate-400 mt-1">Detect a hung terminal or a news-filter CPU spike and restart the platform clean before you miss the session.</p></div>
     <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔌 Reconnect & re-attach</h3><p class="text-sm text-slate-400 mt-1">Broker drop or AutoTrading flipped off? We reconnect and re-attach the EA, then verify it's trading again.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🖥️ Multi-VPS fleet dashboard</h3><p class="text-sm text-slate-400 mt-1">Every VPS, terminal and EA on one live board — up/down, last recovery, equity and open trades.</p></div>
     <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📜 Full activity log</h3><p class="text-sm text-slate-400 mt-1">Every restart, reconnect and recovery, timestamped — so you know exactly what happened while you slept.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📲 Telegram · Email · SMS</h3><p class="text-sm text-slate-400 mt-1">Get a ping when something recovered (or when it needs you), routed where you'll actually see it.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📲 Telegram · Email · SMS</h3><p class="text-sm text-slate-400 mt-1">Get a ping when something recovered (or when it needs you), routed where you'll actually see it. No FX-Blue-Live publishing.</p></div>
   </div>
 </section>
 
@@ -274,7 +277,7 @@
 <section id="pricing" class="border-t border-white/5 bg-white/[.02]">
   <div class="max-w-6xl mx-auto px-5 py-20">
     <h2 class="text-center text-2xl sm:text-3xl font-bold">Simple pricing</h2>
-    <p class="text-center text-slate-400 mt-2">Cancel anytime. Less than one missed trade.</p>
+    <p class="text-center text-slate-400 mt-2">Less than your VPS — and less than one missed trade. Cancel anytime.</p>
     <div class="mt-12 grid md:grid-cols-3 gap-5 max-w-4xl mx-auto">
       <!-- Solo -->
       <div class="rounded-2xl border border-white/10 p-6 flex flex-col">
@@ -312,10 +315,11 @@
 <section class="max-w-3xl mx-auto px-5 py-20">
   <h2 class="text-center text-2xl font-bold">Questions</h2>
   <div class="mt-8 space-y-4 text-sm">
-    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Does it place or close trades?</summary><p class="text-slate-400 mt-2">Never. EA Sentinel doesn't touch your strategy logic or send a single order. It only keeps the platform and your EA running — restarting, reconnecting and re-attaching when they fail.</p></details>
-    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">How is this different from FxBlue Watcher?</summary><p class="text-slate-400 mt-2">FxBlue's watcher mainly alerts and publishes. EA Sentinel actually performs the recovery — restarting the VPS and terminal, relaunching EAs on boot, and clearing CPU-spike freezes — across multiple VPSs from one dashboard.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Does it place or close trades? Can it see my money?</summary><p class="text-slate-400 mt-2">No to both. EA Sentinel never sends an order, never touches your strategy, and doesn't publish your account anywhere. It only watches that the terminal and your EA are running, and restarts them when they're not.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Isn't this free with FX Blue, or built into MetaTrader's VPS?</summary><p class="text-slate-400 mt-2">Those restart the <em>terminal</em> when the broker connection drops — but a reboot often leaves your EA stripped off the chart, or the terminal looks "connected" while the EA has silently stopped. EA Sentinel watches the <em>EA itself</em> (a per-EA heartbeat), puts it back on its chart with its settings, and pings your phone — without you installing three tools or publishing your account to a third-party site.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">What can't it fix?</summary><p class="text-slate-400 mt-2">Honest answer: things outside the terminal. If your broker disables AutoTrading server-side, or your strategy itself is losing, that's not something a watchdog should override — and we won't pretend to. We handle terminal/VPS down, EA stopped, freezes and disconnects.</p></details>
     <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Which brokers / platforms?</summary><p class="text-slate-400 mt-2">Any broker on MetaTrader 5. MT4 support is on the roadmap.</p></details>
-    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Will it work on my VPS?</summary><p class="text-slate-400 mt-2">Yes — the agent runs on any Windows VPS alongside your terminal. If you're not on a VPS yet, we'll point you at one.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Will it work on my VPS?</summary><p class="text-slate-400 mt-2">Yes — the agent runs on any Windows VPS alongside your terminal, including your broker's or MetaTrader's own VPS. If you're not on a VPS yet, we'll point you at one.</p></details>
   </div>
 </section>
 
