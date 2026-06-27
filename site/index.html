@@ -11,7 +11,7 @@
 <script defer src="https://umami.alastor.space/script.js" data-website-id="b976bad1-7c72-4076-8d56-e6151b22a690"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: { brand: { 400:'#34d399', 500:'#10b981', 600:'#059669' } } } } }
-  function uev(name, data){ try{ fetch('https://umami.alastor.space/api/send',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:name,data:data||{}}})}); }catch(e){} }
+  function uev(name, data){ try{ fetch('https://umami.alastor.space/api/send',{method:'POST',headers:{'Content-Type':'text/plain'},keepalive:true,body:JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:name,data:data||{}}})}); }catch(e){} }
 </script>
 <style>
   body{background:#0b0f14;color:#e6edf3}
