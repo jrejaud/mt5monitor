@@ -11,7 +11,7 @@
 <script defer src="https://umami.alastor.space/script.js" data-website-id="b976bad1-7c72-4076-8d56-e6151b22a690"></script>
 <script>
   tailwind.config = { theme: { extend: { colors: { brand: { 400:'#34d399', 500:'#10b981', 600:'#059669' } } } } }
-  function track(name, data){ try{ if(window.umami) umami.track(name, data||{}); }catch(e){} }
+  function uev(name, data){ try{ fetch('https://umami.alastor.space/api/send',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:name,data:data||{}}})}); }catch(e){} }
 </script>
 <style>
   body{background:#0b0f14;color:#e6edf3}
@@ -220,7 +220,7 @@
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
           <li>✓ 1 account</li><li>✓ Telegram + email alerts</li><li>✓ Uptime & disconnect alerts</li><li>✓ 7-day history</li>
         </ul>
-        <button @click="plan='Solo'; open=true" data-umami-event="subscribe_click" data-umami-event-plan="Solo" data-umami-event-price="9" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
+        <button @click="plan='Solo'; open=true; uev('subscribe_click',{plan:'Solo',price:9})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
       </div>
       <!-- Trader (popular) -->
       <div class="rounded-2xl border border-brand-500/50 p-6 flex flex-col glow relative">
@@ -230,7 +230,7 @@
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
           <li>✓ Up to 5 accounts</li><li>✓ Telegram + email + SMS</li><li>✓ Drawdown & margin rules</li><li>✓ Frozen-EA detection</li><li>✓ 90-day history</li>
         </ul>
-        <button @click="plan='Trader'; open=true" data-umami-event="subscribe_click" data-umami-event-plan="Trader" data-umami-event-price="19" class="mt-6 bg-brand-500 hover:bg-brand-400 text-[#04130c] py-2.5 rounded-lg font-semibold">Subscribe</button>
+        <button @click="plan='Trader'; open=true; uev('subscribe_click',{plan:'Trader',price:19})" class="mt-6 bg-brand-500 hover:bg-brand-400 text-[#04130c] py-2.5 rounded-lg font-semibold">Subscribe</button>
       </div>
       <!-- Desk -->
       <div class="rounded-2xl border border-white/10 p-6 flex flex-col">
@@ -239,7 +239,7 @@
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
           <li>✓ Unlimited accounts</li><li>✓ Multi-VPS fleet dashboard</li><li>✓ All alert channels</li><li>✓ Priority support</li><li>✓ 1-year history</li>
         </ul>
-        <button @click="plan='Desk'; open=true" data-umami-event="subscribe_click" data-umami-event-plan="Desk" data-umami-event-price="49" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
+        <button @click="plan='Desk'; open=true; uev('subscribe_click',{plan:'Desk',price:49})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
       </div>
     </div>
   </div>
@@ -262,7 +262,7 @@
       <div>
         <h3 class="text-lg font-semibold">Get early access — <span x-text="plan" class="text-brand-400"></span> plan</h3>
         <p class="text-sm text-slate-400 mt-1">We're onboarding our first traders now. Drop your email and we'll send your invite + a launch discount.</p>
-        <form class="mt-5 space-y-3" @submit.prevent="sent=true">
+        <form class="mt-5 space-y-3" @submit.prevent="uev('early_access_submit',{plan:plan,email:email,setup:setup}); sent=true">
           <input x-model="email" type="email" required placeholder="you@email.com" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none">
           <input x-model="setup" type="text" placeholder="Broker / EA you run (optional)" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none">
           <button type="submit" data-umami-event="early_access_submit" :data-umami-event-plan="plan" :data-umami-event-email="email" :data-umami-event-setup="setup" class="w-full bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold py-2.5 rounded-lg">Get my invite</button>
