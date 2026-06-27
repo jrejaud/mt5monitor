@@ -131,7 +131,7 @@
 </script>
 <!-- auto-extras:end -->
 </head>
-<body x-data="{ open:false, plan:'', sent:false, email:'', setup:'', ev(n,d){ try{ fetch('https://umami.alastor.space/api/send',{method:'POST',headers:{'Content-Type':'text/plain'},keepalive:true,body:JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:n,data:d||{}}})}); }catch(e){} } }" class="antialiased">
+<body x-data="{ open:false, plan:'', price:0, step:'details', sent:false, email:'', setup:'', ev(n,d){ try{ fetch('https://umami.alastor.space/api/send',{method:'POST',headers:{'Content-Type':'text/plain'},keepalive:true,body:JSON.stringify({type:'event',payload:{website:'b976bad1-7c72-4076-8d56-e6151b22a690',hostname:location.hostname,language:navigator.language,screen:screen.width+'x'+screen.height,url:location.pathname,referrer:document.referrer,name:n,data:d||{}}})}); }catch(e){} } }" class="antialiased">
 
 <!-- nav -->
 <header class="sticky top-0 z-40 backdrop-blur bg-[#0b0f14]/80 border-b border-white/5">
@@ -286,7 +286,7 @@
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
           <li>✓ 1 VPS / account</li><li>✓ Auto-restart & EA relaunch</li><li>✓ Telegram + email alerts</li><li>✓ 7-day activity log</li>
         </ul>
-        <button @click="plan='Solo'; open=true" onclick="window.__plan='Solo';uev('subscribe_click',{plan:'Solo',price:9})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
+        <button @click="plan='Solo'; price=9; step='details'; sent=false; open=true" onclick="window.__plan='Solo';window.__price=9;uev('subscribe_click',{plan:'Solo',price:9})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
       </div>
       <!-- Trader (popular) -->
       <div class="rounded-2xl border border-brand-500/50 p-6 flex flex-col glow relative">
@@ -296,7 +296,7 @@
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
           <li>✓ Up to 5 VPS / accounts</li><li>✓ Freeze & CPU-spike recovery</li><li>✓ Reconnect & re-attach</li><li>✓ Telegram + email + SMS</li><li>✓ 90-day activity log</li>
         </ul>
-        <button @click="plan='Trader'; open=true" onclick="window.__plan='Trader';uev('subscribe_click',{plan:'Trader',price:19})" class="mt-6 bg-brand-500 hover:bg-brand-400 text-[#04130c] py-2.5 rounded-lg font-semibold">Subscribe</button>
+        <button @click="plan='Trader'; price=19; step='details'; sent=false; open=true" onclick="window.__plan='Trader';window.__price=19;uev('subscribe_click',{plan:'Trader',price:19})" class="mt-6 bg-brand-500 hover:bg-brand-400 text-[#04130c] py-2.5 rounded-lg font-semibold">Subscribe</button>
       </div>
       <!-- Desk -->
       <div class="rounded-2xl border border-white/10 p-6 flex flex-col">
@@ -305,7 +305,7 @@
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
           <li>✓ Unlimited VPS / accounts</li><li>✓ Multi-VPS fleet dashboard</li><li>✓ All recovery + alert channels</li><li>✓ Priority support</li><li>✓ 1-year activity log</li>
         </ul>
-        <button @click="plan='Desk'; open=true" onclick="window.__plan='Desk';uev('subscribe_click',{plan:'Desk',price:49})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
+        <button @click="plan='Desk'; price=49; step='details'; sent=false; open=true" onclick="window.__plan='Desk';window.__price=49;uev('subscribe_click',{plan:'Desk',price:49})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
       </div>
     </div>
   </div>
@@ -324,26 +324,48 @@
 </section>
 
 <!-- modal -->
-<div x-show="open" x-cloak style="display:none" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/70" @click.self="open=false">
+<div x-show="open" x-cloak style="display:none" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-black/70" @click.self="open=false; step='details'; sent=false">
   <div class="w-full max-w-md rounded-2xl border border-white/10 bg-[#0e141b] p-6 glow">
-    <template x-if="!sent">
+    <!-- step 1: your details -->
+    <template x-if="!sent && step==='details'">
       <div>
-        <h3 class="text-lg font-semibold">Get early access — <span x-text="plan" class="text-brand-400"></span> plan</h3>
-        <p class="text-sm text-slate-400 mt-1">We're onboarding our first traders now. Drop your email and we'll send your invite + a launch discount.</p>
-        <form class="mt-5 space-y-3" @submit.prevent="sent=true">
+        <h3 class="text-lg font-semibold">Start your <span x-text="plan" class="text-brand-400"></span> plan — <span x-text="'$'+price"></span><span class="text-slate-400 font-normal">/mo</span></h3>
+        <p class="text-sm text-slate-400 mt-1">Founder pricing, cancel anytime. Tell us where to set up your watchdog.</p>
+        <form class="mt-5 space-y-3" @submit.prevent="if(email){step='checkout'}">
           <input id="ea-email" x-model="email" type="email" required placeholder="you@email.com" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none">
           <input id="ea-setup" x-model="setup" type="text" placeholder="Broker / EA you run (optional)" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none">
-          <button type="submit" onclick="uev('early_access_submit',{plan:window.__plan,email:document.getElementById('ea-email').value,setup:document.getElementById('ea-setup').value})" class="w-full bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold py-2.5 rounded-lg">Get my invite</button>
+          <button type="submit" onclick="if(document.getElementById('ea-email').value){uev('early_access_submit',{plan:window.__plan,price:window.__price,email:document.getElementById('ea-email').value,setup:document.getElementById('ea-setup').value});uev('checkout_reached',{plan:window.__plan,price:window.__price});}" class="w-full bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold py-2.5 rounded-lg">Continue to secure checkout →</button>
         </form>
         <button @click="open=false" class="mt-3 w-full text-xs text-slate-500 hover:text-slate-300">Maybe later</button>
       </div>
     </template>
+    <!-- step 2: payment (painted door — no charge, no card stored) -->
+    <template x-if="!sent && step==='checkout'">
+      <div>
+        <button @click="step='details'" class="text-xs text-slate-500 hover:text-slate-300">← back</button>
+        <h3 class="text-lg font-semibold mt-2">Checkout</h3>
+        <div class="mt-3 flex items-center justify-between rounded-lg border border-white/10 p-3 text-sm">
+          <span class="text-slate-300"><span x-text="plan"></span> plan · monthly</span>
+          <span class="font-semibold"><span x-text="'$'+price"></span>/mo</span>
+        </div>
+        <div class="mt-4 space-y-3">
+          <input readonly inputmode="none" placeholder="Card number" onfocus="uev('card_field_focus',{plan:window.__plan,price:window.__price})" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none cursor-text">
+          <div class="grid grid-cols-2 gap-3">
+            <input readonly inputmode="none" placeholder="MM / YY" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none cursor-text">
+            <input readonly inputmode="none" placeholder="CVC" class="w-full bg-black/30 border border-white/15 rounded-lg px-3 py-2.5 text-sm focus:border-brand-500 outline-none cursor-text">
+          </div>
+        </div>
+        <button type="button" @click="sent=true" onclick="uev('pay_click',{plan:window.__plan,price:window.__price,email:document.getElementById('ea-email').value})" class="mt-4 w-full bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold py-2.5 rounded-lg">🔒 Subscribe · <span x-text="'$'+price"></span>/mo</button>
+        <p class="mt-2 text-center text-[11px] text-slate-500">Secured by Stripe · cancel anytime</p>
+      </div>
+    </template>
+    <!-- reserved confirmation (no charge) -->
     <template x-if="sent">
       <div class="text-center py-4">
         <div class="text-3xl">✅</div>
-        <h3 class="text-lg font-semibold mt-2">You're on the list.</h3>
-        <p class="text-sm text-slate-400 mt-1">We'll email your invite shortly. Watch your inbox.</p>
-        <button @click="open=false; sent=false" class="mt-5 text-sm border border-white/15 px-4 py-2 rounded-lg">Close</button>
+        <h3 class="text-lg font-semibold mt-2">You're reserved — no charge yet.</h3>
+        <p class="text-sm text-slate-400 mt-1">EA Sentinel is in founder onboarding — we're setting up the first watchdogs by hand. We'll email you a secure payment link and a founder discount the moment your spot is ready.</p>
+        <button @click="open=false; sent=false; step='details'" class="mt-5 text-sm border border-white/15 px-4 py-2 rounded-lg">Close</button>
       </div>
     </template>
   </div>
