@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>EA Sentinel — Know the second your MT5 EA stops trading</title>
-<meta name="description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram. Stop finding out hours later that your EA went down.">
+<title>EA Sentinel — Keep your MT5 Expert Advisor running 24/7</title>
+<meta name="description" content="Keep your MetaTrader 5 Expert Advisors running 24/7. Auto-restart your VPS and terminal, relaunch stopped EAs, and recover from crashes and disconnects automatically — a managed FxBlue-Watcher alternative with a live dashboard.">
 <script src="https://cdn.tailwindcss.com"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <!-- analytics: Umami (website-id injected at deploy) -->
@@ -20,14 +20,14 @@
 </style>
 
 <!-- auto-extras:start -->
-<meta name="description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.">
+<meta name="description" content="Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically.">
 <link rel="canonical" href="https://mt5monitor.alastor.space/">
 
 <!-- OpenGraph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="EA Sentinel">
 <meta property="og:title" content="EA Sentinel">
-<meta property="og:description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.">
+<meta property="og:description" content="Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically.">
 <meta property="og:url" content="https://mt5monitor.alastor.space/">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://mt5monitor.alastor.space/og-image.png">
@@ -36,7 +36,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="EA Sentinel">
-<meta name="twitter:description" content="Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.">
+<meta name="twitter:description" content="Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically.">
 <meta name="twitter:image" content="https://mt5monitor.alastor.space/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -50,7 +50,7 @@
   "@type": "Organization",
   "name": "EA Sentinel",
   "url": "https://mt5monitor.alastor.space/",
-  "description": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.",
+  "description": "Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically.",
   "email": "hello@alastor.space"
 }
 </script>
@@ -60,15 +60,15 @@
   "@type": "WebSite",
   "name": "EA Sentinel",
   "url": "https://mt5monitor.alastor.space/",
-  "description": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram."
+  "description": "Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically."
 }
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "MT5 Expert Advisor monitoring & alerts",
-  "description": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram.",
+  "name": "MT5 Expert Advisor uptime & auto-recovery",
+  "description": "Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically.",
   "provider": {
     "@type": "Organization",
     "name": "EA Sentinel",
@@ -87,7 +87,7 @@
       "name": "What is EA Sentinel?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors — straight to Telegram."
+        "text": "Keep your MetaTrader 5 Expert Advisors running 24/7 — auto-restart your VPS, relaunch stopped EAs, and recover from crashes and disconnects automatically."
       }
     },
     {
@@ -145,7 +145,7 @@
       <a href="#features" class="hover:text-white">Features</a>
       <a href="#pricing" class="hover:text-white">Pricing</a>
     </nav>
-    <a href="#pricing" data-umami-event="nav_cta" class="text-sm font-medium bg-brand-500 hover:bg-brand-400 text-[#04130c] px-4 py-2 rounded-lg">Start monitoring</a>
+    <a href="#pricing" data-umami-event="nav_cta" class="text-sm font-medium bg-brand-500 hover:bg-brand-400 text-[#04130c] px-4 py-2 rounded-lg">Keep my EA alive</a>
   </div>
 </header>
 
@@ -156,54 +156,54 @@
       <span class="w-1.5 h-1.5 rounded-full bg-brand-500"></span> For traders running EAs 24/7 on a VPS
     </div>
     <h1 class="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.05]">
-      Know the <span class="text-brand-400">second</span> your<br class="hidden sm:block"> MT5 EA stops trading.
+      Keep your MT5 EA<br class="hidden sm:block"> running <span class="text-brand-400">24/7</span>.
     </h1>
     <p class="mt-6 max-w-2xl mx-auto text-lg text-slate-300">
-      Real-time uptime, drawdown and disconnect alerts for your MetaTrader 5 Expert Advisors —
-      straight to Telegram. Stop finding out <em>hours later</em> that your bot went down, blew a
-      drawdown limit, or lost the broker connection.
+      A watchdog for your MetaTrader Expert Advisors. When your VPS reboots, the terminal freezes,
+      an EA detaches, or the broker drops — EA Sentinel <em>auto-restarts it for you</em> and pings
+      you it's handled. Stop babysitting your VPS. Stop missing trades while your bot sits dead.
     </p>
     <div class="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
-      <a href="#pricing" data-umami-event="hero_cta" class="bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold px-6 py-3 rounded-xl glow">Start monitoring →</a>
+      <a href="#pricing" data-umami-event="hero_cta" class="bg-brand-500 hover:bg-brand-400 text-[#04130c] font-semibold px-6 py-3 rounded-xl glow">Keep my EA alive →</a>
       <a href="#how" class="border border-white/15 hover:border-white/30 px-6 py-3 rounded-xl">See how it works</a>
     </div>
-    <p class="mt-4 text-xs text-slate-500">No card to start · Telegram alerts in under 5 minutes</p>
+    <p class="mt-4 text-xs text-slate-500">No card to start · Auto-recovery live in under 5 minutes · A managed FxBlue-Watcher alternative</p>
   </div>
 </section>
 
 <!-- problem -->
 <section class="max-w-4xl mx-auto px-5 py-20 text-center">
-  <h2 class="text-2xl sm:text-3xl font-bold">Your EA went down at 2&nbsp;a.m. You found out at noon.</h2>
-  <p class="mt-4 text-slate-300">A detached EA, a frozen terminal, a broker disconnect, a VPS reboot — any of them silently stops your strategy. By the time you notice, you've missed entries, held losers, or breached a funded-account rule.</p>
+  <h2 class="text-2xl sm:text-3xl font-bold">Your VPS rebooted at 2&nbsp;a.m. Your EA never came back.</h2>
+  <p class="mt-4 text-slate-300">A Windows update reboots the VPS, a CPU spike freezes the terminal, an EA detaches, the broker drops — and your strategy just sits there, dead, until you happen to log in. An alert alone doesn't help at 2&nbsp;a.m. <strong>Something has to actually restart it.</strong></p>
   <div class="mt-10 grid sm:grid-cols-3 gap-4 text-left">
-    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">EA detached / stopped</div><p class="text-sm text-slate-400 mt-1">AutoTrading off, EA removed from chart, or terminal closed — and no one told you.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">Broker disconnect</div><p class="text-sm text-slate-400 mt-1">Connection drops at the worst moment; orders don't fire, trailing stops freeze.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">Drawdown breach</div><p class="text-sm text-slate-400 mt-1">Equity falls past your limit — or your prop-firm daily limit — with no warning.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">VPS reboot / Windows update</div><p class="text-sm text-slate-400 mt-1">The VPS restarts overnight and MetaTrader never reopens. EA Sentinel relaunches the terminal and your EAs on boot.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">Frozen terminal / CPU spike</div><p class="text-sm text-slate-400 mt-1">News filter or a stuck EA pins the CPU and MT hangs. We detect the freeze and restart the platform clean.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><div class="text-brand-400 font-semibold">EA detached / broker drop</div><p class="text-sm text-slate-400 mt-1">AutoTrading flips off or the connection dies. We re-attach the EA and reconnect — then confirm it's trading again.</p></div>
   </div>
 </section>
 
 <!-- how -->
 <section id="how" class="border-y border-white/5 bg-white/[.02]">
   <div class="max-w-5xl mx-auto px-5 py-20">
-    <h2 class="text-center text-2xl sm:text-3xl font-bold">Live in 5 minutes</h2>
+    <h2 class="text-center text-2xl sm:text-3xl font-bold">Set it up once. Then stop watching it.</h2>
     <div class="mt-12 grid sm:grid-cols-3 gap-8">
-      <div><div class="text-brand-400 text-sm font-mono">01</div><h3 class="font-semibold mt-1">Attach the monitor</h3><p class="text-sm text-slate-400 mt-1">Drop the lightweight EA Sentinel utility on any chart (or connect read-only). It sends a secure heartbeat with your account health.</p></div>
-      <div><div class="text-brand-400 text-sm font-mono">02</div><h3 class="font-semibold mt-1">Set your rules</h3><p class="text-sm text-slate-400 mt-1">Pick the thresholds that matter — max drawdown, margin level, “no trades in X hours”, disconnect, equity floor.</p></div>
-      <div><div class="text-brand-400 text-sm font-mono">03</div><h3 class="font-semibold mt-1">Get pinged instantly</h3><p class="text-sm text-slate-400 mt-1">The moment something breaks, you get a Telegram / email / SMS alert — with exactly what failed and on which account.</p></div>
+      <div><div class="text-brand-400 text-sm font-mono">01</div><h3 class="font-semibold mt-1">Install the agent</h3><p class="text-sm text-slate-400 mt-1">Run the lightweight EA Sentinel agent on your Windows VPS — one installer. It learns which terminals and EAs should always be running.</p></div>
+      <div><div class="text-brand-400 text-sm font-mono">02</div><h3 class="font-semibold mt-1">Set recovery rules</h3><p class="text-sm text-slate-400 mt-1">Pick what "healthy" means — terminal open, AutoTrading on, EA attached, broker connected, no CPU freeze — and what to do when it isn't.</p></div>
+      <div><div class="text-brand-400 text-sm font-mono">03</div><h3 class="font-semibold mt-1">It fixes itself</h3><p class="text-sm text-slate-400 mt-1">When something breaks, the agent restarts the VPS, relaunches MT, re-attaches the EA — and pings you that it recovered, not that it broke.</p></div>
     </div>
   </div>
 </section>
 
 <!-- features -->
 <section id="features" class="max-w-6xl mx-auto px-5 py-20">
-  <h2 class="text-center text-2xl sm:text-3xl font-bold">Everything you need to sleep through the session</h2>
+  <h2 class="text-center text-2xl sm:text-3xl font-bold">A watchdog that actually fixes things</h2>
   <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">⚡ Instant downtime alerts</h3><p class="text-sm text-slate-400 mt-1">EA stopped, AutoTrading off, terminal closed, or VPS offline — detected within seconds.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📉 Drawdown & margin guards</h3><p class="text-sm text-slate-400 mt-1">Alert before you breach a personal or prop-firm drawdown / daily-loss limit.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔌 Broker disconnect watch</h3><p class="text-sm text-slate-400 mt-1">Know the instant the terminal loses its connection to your broker.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🧊 “Frozen EA” detection</h3><p class="text-sm text-slate-400 mt-1">No ticks processed or no trades when there should be? Catch a silently-stuck strategy.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🖥️ Multi-account fleet view</h3><p class="text-sm text-slate-400 mt-1">Every account, VPS and EA on one live dashboard — equity, DD, open trades, status.</p></div>
-    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📲 Telegram · Email · SMS</h3><p class="text-sm text-slate-400 mt-1">Route alerts where you'll actually see them, with per-rule channels.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔁 Auto-restart on reboot</h3><p class="text-sm text-slate-400 mt-1">When the VPS reboots from a Windows update, MetaTrader and every EA relaunch automatically — no manual login.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🧊 Freeze & CPU-spike recovery</h3><p class="text-sm text-slate-400 mt-1">Detect a hung terminal or a news-filter CPU spike and restart the platform clean before you miss the session.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🔌 Reconnect & re-attach</h3><p class="text-sm text-slate-400 mt-1">Broker drop or AutoTrading flipped off? We reconnect and re-attach the EA, then verify it's trading again.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">🖥️ Multi-VPS fleet dashboard</h3><p class="text-sm text-slate-400 mt-1">Every VPS, terminal and EA on one live board — up/down, last recovery, equity and open trades.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📜 Full activity log</h3><p class="text-sm text-slate-400 mt-1">Every restart, reconnect and recovery, timestamped — so you know exactly what happened while you slept.</p></div>
+    <div class="rounded-xl border border-white/10 p-5"><h3 class="font-semibold">📲 Telegram · Email · SMS</h3><p class="text-sm text-slate-400 mt-1">Get a ping when something recovered (or when it needs you), routed where you'll actually see it.</p></div>
   </div>
 </section>
 
@@ -218,7 +218,7 @@
         <div class="font-semibold">Solo</div>
         <div class="mt-2 text-3xl font-bold">$9<span class="text-base font-normal text-slate-400">/mo</span></div>
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
-          <li>✓ 1 account</li><li>✓ Telegram + email alerts</li><li>✓ Uptime & disconnect alerts</li><li>✓ 7-day history</li>
+          <li>✓ 1 VPS / account</li><li>✓ Auto-restart & EA relaunch</li><li>✓ Telegram + email alerts</li><li>✓ 7-day activity log</li>
         </ul>
         <button @click="plan='Solo'; open=true" onclick="window.__plan='Solo';uev('subscribe_click',{plan:'Solo',price:9})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
       </div>
@@ -228,7 +228,7 @@
         <div class="font-semibold">Trader</div>
         <div class="mt-2 text-3xl font-bold">$19<span class="text-base font-normal text-slate-400">/mo</span></div>
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
-          <li>✓ Up to 5 accounts</li><li>✓ Telegram + email + SMS</li><li>✓ Drawdown & margin rules</li><li>✓ Frozen-EA detection</li><li>✓ 90-day history</li>
+          <li>✓ Up to 5 VPS / accounts</li><li>✓ Freeze & CPU-spike recovery</li><li>✓ Reconnect & re-attach</li><li>✓ Telegram + email + SMS</li><li>✓ 90-day activity log</li>
         </ul>
         <button @click="plan='Trader'; open=true" onclick="window.__plan='Trader';uev('subscribe_click',{plan:'Trader',price:19})" class="mt-6 bg-brand-500 hover:bg-brand-400 text-[#04130c] py-2.5 rounded-lg font-semibold">Subscribe</button>
       </div>
@@ -237,7 +237,7 @@
         <div class="font-semibold">Desk</div>
         <div class="mt-2 text-3xl font-bold">$49<span class="text-base font-normal text-slate-400">/mo</span></div>
         <ul class="mt-5 space-y-2 text-sm text-slate-300 flex-1">
-          <li>✓ Unlimited accounts</li><li>✓ Multi-VPS fleet dashboard</li><li>✓ All alert channels</li><li>✓ Priority support</li><li>✓ 1-year history</li>
+          <li>✓ Unlimited VPS / accounts</li><li>✓ Multi-VPS fleet dashboard</li><li>✓ All recovery + alert channels</li><li>✓ Priority support</li><li>✓ 1-year activity log</li>
         </ul>
         <button @click="plan='Desk'; open=true" onclick="window.__plan='Desk';uev('subscribe_click',{plan:'Desk',price:49})" class="mt-6 border border-brand-500/40 hover:border-brand-400 text-brand-300 py-2.5 rounded-lg font-medium">Subscribe</button>
       </div>
@@ -249,9 +249,10 @@
 <section class="max-w-3xl mx-auto px-5 py-20">
   <h2 class="text-center text-2xl font-bold">Questions</h2>
   <div class="mt-8 space-y-4 text-sm">
-    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Does it place or close trades?</summary><p class="text-slate-400 mt-2">No. EA Sentinel is monitoring-only — it watches your accounts and alerts you. It never trades.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Does it place or close trades?</summary><p class="text-slate-400 mt-2">Never. EA Sentinel doesn't touch your strategy logic or send a single order. It only keeps the platform and your EA running — restarting, reconnecting and re-attaching when they fail.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">How is this different from FxBlue Watcher?</summary><p class="text-slate-400 mt-2">FxBlue's watcher mainly alerts and publishes. EA Sentinel actually performs the recovery — restarting the VPS and terminal, relaunching EAs on boot, and clearing CPU-spike freezes — across multiple VPSs from one dashboard.</p></details>
     <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Which brokers / platforms?</summary><p class="text-slate-400 mt-2">Any broker on MetaTrader 5. MT4 support is on the roadmap.</p></details>
-    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Will it work on my VPS?</summary><p class="text-slate-400 mt-2">Yes — the monitor runs alongside your terminal on any Windows VPS, and a cloud option needs no install.</p></details>
+    <details class="rounded-lg border border-white/10 p-4"><summary class="cursor-pointer font-medium">Will it work on my VPS?</summary><p class="text-slate-400 mt-2">Yes — the agent runs on any Windows VPS alongside your terminal. If you're not on a VPS yet, we'll point you at one.</p></details>
   </div>
 </section>
 
@@ -284,7 +285,7 @@
 <!-- footer -->
 <footer class="border-t border-white/5">
   <div class="max-w-6xl mx-auto px-5 py-10 text-sm text-slate-500 flex flex-col sm:flex-row gap-4 justify-between">
-    <div>© 2026 EA Sentinel. Monitoring tool — not affiliated with MetaQuotes or MetaTrader.</div>
+    <div>© 2026 EA Sentinel. EA uptime & auto-recovery tool — not affiliated with MetaQuotes or MetaTrader.</div>
     <div class="flex gap-5"><a href="/privacy" class="hover:text-slate-300">Privacy</a><a href="/terms" class="hover:text-slate-300">Terms</a></div>
   </div>
 </footer>
