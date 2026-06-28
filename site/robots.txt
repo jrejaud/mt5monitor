@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mt5monitor.alastor.space/sitemap.xml
+Sitemap: https://easentinel.alastor.space/sitemap.xml
