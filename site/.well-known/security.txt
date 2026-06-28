@@ -1,4 +1,0 @@
-Contact: mailto:hello@alastor.space
-Expires: 2027-06-27T07:03:03Z
-Preferred-Languages: en
-Canonical: https://mt5monitor.alastor.space/.well-known/security.txt
